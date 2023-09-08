@@ -1,7 +1,13 @@
 package com.prakash.controller;
 
+import java.security.PublicKey;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.prakash.entity.Student;
 
 @Controller
 public class StudentController {
@@ -11,9 +17,15 @@ public class StudentController {
 		return "index";
 	}
 	@RequestMapping("/new")
-	public String linkNew() {
+	public String linkNew(Model model) {
+		Student student = new Student();
+		model.addAttribute("student", student);
 		return "new";
 	}
-	
-	
+	@RequestMapping("/insert")
+	public String handleForm(@ModelAttribute Student student) {
+		
+		return "success";
+	}
+		
 }
